@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { noHomeroValidator } from 'src/app/utils/validators';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -29,7 +30,7 @@ export class ReactiveFormsComponent {
 */
 
 userForm = this.formBuilder.group({
-  name: this.formBuilder.control(''),
+  name: ['', [noHomeroValidator]],
   lastName: this.formBuilder.control(''),
   email: this.formBuilder.control('', [
     Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}'), 
@@ -44,6 +45,10 @@ get emailControl() {
 
 get paswordControl() {
   return this.userForm.get('password');
+}
+
+get nameControl() {
+  return this.userForm.get('name');
 }
 
   constructor(private formBuilder: FormBuilder) {}

@@ -8,10 +8,9 @@ import { FormBuilder } from '@angular/forms';
 })
 export class AppComponent {
 
-myForm = this.formBuilder.group({
-  name: this.formBuilder.control(''),
-  lastName: this.formBuilder.control(''),
-})
+// myForm = this.formBuilder.group({
+//   name: this.formBuilder.control(''),
+//   lastName: this.formBuilder.control(''),
+// })
   constructor(private formBuilder: FormBuilder){}
-  title = 'clase-06';
 }
