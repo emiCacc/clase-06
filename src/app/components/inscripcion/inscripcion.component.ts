@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./inscripcion.component.scss']
 })
 export class InscripcionComponent {
-
+  option: boolean = false;
 }

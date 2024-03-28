@@ -18,9 +18,7 @@ import { HeaderComponent } from './components/header/header.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // Template driven
     FormsModule,
-    // Reactive forms
     ReactiveFormsModule
   ],
   providers: [],
