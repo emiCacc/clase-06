@@ -41,6 +41,11 @@ userForm = this.formBuilder.group({
 get emailControl() {
   return this.userForm.get('email');
 }
+
+get paswordControl() {
+  return this.userForm.get('password');
+}
+
   constructor(private formBuilder: FormBuilder) {}
 
 onSubmit(): void{
