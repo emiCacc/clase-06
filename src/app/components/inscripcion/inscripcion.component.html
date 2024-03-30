@@ -1,64 +1,80 @@
-<div class="mt-2">
-    <form>
-      <!-- RADIOBUTTONS -->
-      <fieldset class="row mb-3">
-        <legend class="col-form-label col-6 pt-0 text-end">¿Ha participado antes en algún torneo de Artes Marciales?:</legend>
-        <div class="col-6 d-flex justify-content-start">
-          <!-- Check 1 -->
-          <div class="form-check-inline">
-            <input class="form-check-input" type="radio" name="option" id="option1" [ngModel]="option" (change)="option=true">
-            <label class="ms-1" for="gridRadios1">Si</label>
-          </div>
-          <!-- Check 2 -->
-          <div class="form-check-inline">
-            <input class="form-check-input" type="radio" name="option" id="option2" [ngModel]="!option" (change)="option=false">
-            <label class="ms-1" for="gridRadios2">No</label>
-          </div>
+<div class="row col-12 mt-2">
+    <!-- RADIOBUTTONS -->
+    <fieldset class="row col-12 mb-3">
+      <legend class="col-6 col-form-label pt-0 text-end">¿Ha participado antes en algún torneo de Artes Marciales?:</legend>
+      <div class="col-6 d-flex justify-content-start">
+        <!-- Check 1 -->
+        <div class="form-check-inline">
+          <input class="form-check-input" type="radio" name="option" id="option1" [(ngModel)]="option" [value]="true">
+          <label class="ms-1" for="option1">Si</label>
         </div>
-      </fieldset>
-      <!-- INPUTS -->
-      <div *ngIf="option" class="budokai_yes" name="DIV_1">
-        <!-- Nombre -->
-        <div class="row mb-3">
-          <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputNombre">
-          </div>
-        </div>
-        <!-- Apellido -->
-        <div class="row mb-3">
-          <label for="inputApellido" class="col-sm-2 col-form-label">Apellido</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputApellido">
-          </div>
-        </div>
-        <!-- Universo -->
-        <div class="row mb-3">
-          <label for="inputUniverso" class="col-sm-2 col-form-label">Universo</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputUniverso">
-          </div>
-        </div>
-        <!-- Poder de pelea -->
-        <div class="row mb-3">
-          <label for="inputPoderPelea" class="col-sm-2 col-form-label">Poder de pelea</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputPoderPelea">
-          </div>
+        <!-- Check 2 -->
+        <div class="form-check-inline">
+          <input class="form-check-input" type="radio" name="option" id="option2" [(ngModel)]="option" [value]="false">
+          <label class="ms-1" for="option2">No</label>
         </div>
       </div>
-      <div *ngIf="!option" class="budokai_no" name="DIV_2">
+    </fieldset>
+    <!-- FORM -->
+      <form>
+        <div *ngIf="option" class="row budokai_yes" name="DIV_1">
+          <!-- INPUTS -->
+          <div class="col-8" >
+            <h3>SI HE PARTICIPADO</h3>
+            <!-- Participante -->
+            <div class="row mb-3">
+              <label for="inputParticipante" class="col-sm-2 col-form-label">Participante</label>
+              <div class="col-sm-10">
+                <select class="w-100 p-2" id="floatingSelect" [(ngModel)]="participanteSeleccionadoId" name="participanteSeleccionadoId">
+                  <option [ngValue]="null">Elije tu nombre</option>
+                  <option *ngFor="let participante of participantes" [ngValue]="participante.id">{{ participante.name }}</option>
+                </select>       
+              </div>
+            </div>
+            <!-- Universo -->
+            <div class="row mb-3">
+              <label for="inputUniverso" class="col-sm-2 col-form-label">Universo</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputUniverso" [value]="getUniversoByParticipanteId(participanteSeleccionadoId)" [readonly]="true">
+              </div>
+            </div>
+              <!-- Planeta -->
+              <div class="row mb-3">
+                <label for="inputPlaneta" class="col-sm-2 col-form-label">Planeta</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputPlaneta">
+                </div>
+              </div>
+              <!-- Poder de pelea -->
+              <div class="row mb-3">
+                <label for="inputPoderPelea" class="col-sm-2 col-form-label">Poder de pelea</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputPoderPelea">
+                </div>
+              </div>            
+          </div>
+            <!-- FOTO -->
+          <div class="col">
+              <img [src]="getFotoByParticipanteId(participanteSeleccionadoId)" alt="Foto del Participante" class="img-fluid img-participante">
+          </div>
+        </div>
+
+
+
+        <div *ngIf="!option" class="budokai_no" name="DIV_2">
+          <h3>NO HE PARTICIPADO</h3>
+        </div>
         <!-- CHECKBOX -->
         <div class="row mb-3">
           <div class="col-sm-10 offset-sm-2">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="gridCheck1">
-              <label class="form-check-label" for="gridCheck1">Example checkbox</label>
+              <label class="d-flex justify-content-start" for="gridCheck1">Example checkbox</label>
+              <input type="checkbox" id="gridCheck1">
             </div>
           </div>
         </div>
-      </div>
-      <!-- BUTTONS -->
-      <button type="submit" class="btn btn-primary">Sign in</button>
-    </form>
-  </div>
+        <!-- BUTTONS -->
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </form>
+
+</div>
