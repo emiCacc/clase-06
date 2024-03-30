@@ -31,8 +31,8 @@
     </fieldset>
     <!-- FORM -->
       <form>
+        <!-- INPUTS SI -->
         <div *ngIf="option" class="row budokai_yes" name="DIV_1">
-          <!-- INPUTS -->
           <div class="col-8">
             <h3>SI HE PARTICIPADO</h3>
             <!-- Participante -->
@@ -91,8 +91,8 @@
           </div>
         </div>
 
+        <!-- INPUTS NO -->
         <div *ngIf="!option" class="row budokai_no" name="DIV_2">
-          <!-- INPUTS -->
           <div class="col-xl-8">
             <h3>NO HE PARTICIPADO</h3>
             <!-- Participante -->
@@ -147,18 +147,20 @@
           <!-- FOTO -->
           <div class="col-xl-4">
             <img alt="Foto" class="img-fluid img-participante" src="../../../assets/img/logo_budokai_empty.png">
-          </div>                    
-        </div>
-        <!-- CHECKBOX -->
-        <div class="row mb-3">
-          <div class="col-xl-8 offset-sm-2">
-            <div class="form-check">
-              <label class="d-flex justify-content-start" for="gridCheck1">Example checkbox</label>
-              
+          </div>  
+          <!-- CHECKBOX -->
+          <div class="row mb-3">
+            <div class="col-xl-8">
+              <div class="form-check">
+                <label class="d-flex justify-content-start" for="gridCheck1">Soy consciente de que durante el torneo puedo perder la vida, no responsabilizaré a la organización ni a ninguno de sus miembros por este motivo.</label>              
+              </div>
+            </div>
+            <div class="col">
+              <input type="checkbox" id="gridCheck1">
             </div>
           </div>
-          <div class="col-xl-4"><input type="checkbox" id="gridCheck1"></div>
-        </div>
+          </div>
+
         <!-- BUTTONS -->
         <div class="row">
           <div class="col-xl-8">
