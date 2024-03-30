@@ -1,7 +1,7 @@
 import { AfterViewChecked, Component, ElementRef, ViewChild } from '@angular/core';
 import { participantes, IParticipante } from '../../utils/db-participantes';
 import { FormBuilder, Validators } from '@angular/forms';
-import { noHomeroValidator } from 'src/app/utils/validators';
+import { noSymbolsValidator, onlyNumbersValidator, powerLevelValidator } from 'src/app/utils/validators';
 
 @Component({
   selector: 'app-inscripcion',
@@ -25,10 +25,10 @@ export class InscripcionComponent implements AfterViewChecked {
 
   inscripcionForm = this.formBuilder.group({
     participante: [null], 
-    nombre: ['', [noHomeroValidator]],
-    universo: [''],
+    nombre: ['', [noSymbolsValidator]],
+    universo: ['', [onlyNumbersValidator]],
     planeta: [''],
-    poderPelea: ['']
+    poderPelea: ['', [powerLevelValidator]]
   });
 
   get nameControl() {

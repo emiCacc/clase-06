@@ -33,8 +33,9 @@
       <form [formGroup]="inscripcionForm">
         <!-- INPUTS SI -->
         <div *ngIf="option" class="row budokai_yes" name="DIV_1">
+          <h3>SI HE PARTICIPADO</h3>
           <div class="col-xl-8">
-            <h3>SI HE PARTICIPADO</h3>
+            <label class="mt-1 mb-2">Selecciona tu nombre en la lista para inscribirte sin cargar tus datos.</label>
             <!-- Participante -->
             <div class="row mb-3">
               <label for="inputParticipante" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Participante:</label>
@@ -101,8 +102,9 @@
 
         <!-- INPUTS NO -->
         <div *ngIf="!option" class="row budokai_no" name="DIV_2">
+          <h3>NO HE PARTICIPADO</h3>
           <div class="col-xl-8">
-            <h3>NO HE PARTICIPADO</h3>
+            <label class="mt-1 mb-2">Ingresa tus datos a continuación para inscribirte a la competición.</label>
             <!-- Participante -->
             <div class="row mb-3">
               <label for="inputNombreNuevo" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Nombre:</label>
@@ -114,7 +116,10 @@
                   id="inputParticipante" 
                   [value]="getUniversoById()"
                   placeholder="Ingresa tu nombre"
+                  [ngClass]="nameControl?.valid ? 'is-valid' : 'is-invalid' "
+                  [class.is-invalid]="nameControl?.touched && nameControl?.invalid"
                 >
+                <div *ngIf="nameControl?.hasError('noSymbols')" class="invalid-feedback"> No se permiten simbolos </div>
               </div>
             </div>
             <!-- Universo -->
@@ -128,7 +133,10 @@
                   id="inputUniverso" 
                   [value]="getUniversoById()"
                   placeholder="Ingresa tu universo"
+                  [ngClass]="universoControl?.valid ? 'is-valid' : 'is-invalid' "
+                  [class.is-invalid]="universoControl?.touched && nameControl?.invalid"
                 >
+                <div *ngIf="universoControl?.hasError('onlyNumbers')" class="invalid-feedback"> El valor debe ser un número entre 1 y 12. </div>
               </div>
             </div>
             <!-- Planeta -->
@@ -142,6 +150,8 @@
                   id="inputPlaneta" 
                   [value]="getPlanetaById()"
                   placeholder="Ingresa tu Planeta"
+                  [ngClass]="planetaControl?.valid ? 'is-valid' : 'is-invalid' "
+                  [class.is-invalid]="planetaControl?.touched && nameControl?.invalid"
                 >
               </div>
             </div>
@@ -156,7 +166,10 @@
                   id="inputPoderPelea" 
                   [value]="getPoderById()"
                   placeholder="Ingresa tu nivel de pelea"
+                  [ngClass]="poderPeleaControl?.valid ? 'is-valid' : 'is-invalid' "
+                  [class.is-invalid]="poderPeleaControl?.touched && nameControl?.invalid"
                 >
+                <div *ngIf="poderPeleaControl?.hasError('powerLevel')" class="invalid-feedback"> Tu poder de pelea debe ser un número mayor a 500. </div>
               </div>
             </div>   
           </div>       
