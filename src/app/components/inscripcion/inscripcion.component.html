@@ -42,11 +42,11 @@
                 <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
                   <select 
                     #inputParticipanteAntiguo
-                    class="w-75 h-75 d-flex text-center bg-warning-subtle" 
+                    class="form-control-sm w-75 h-75 text-center bg-warning-subtle" 
                     id="floatingSelect" 
                     formControlName="participante"
                     name="participanteSeleccionadoId">
-                    <option [ngValue]="null">Elije tu nombre</option>
+                    <option [ngValue]="null">Elige tu nombre</option>
                     <option *ngFor="let participante of participantes" [ngValue]="participante.id">{{ participante.name }}</option>
                   </select>       
                 </div>
@@ -128,7 +128,7 @@
                     [ngClass]="nameControl?.valid ? 'is-valid' : 'is-invalid' "
                     [class.is-invalid]="nameControl?.touched && nameControl?.invalid"
                   >
-                  <div *ngIf="nameControl?.hasError('noSymbols')" class="invalid-feedback"> No se permiten simbolos </div>
+                  <div *ngIf="nameControl?.hasError('noSymbols')" class="invalid-feedback fs-6 error-shadow d-flex ms-2"> No se permiten simbolos </div>
                 </div>
               </div>
               <!-- Universo -->
@@ -146,7 +146,7 @@
                     [ngClass]="universoControl?.valid ? 'is-valid' : 'is-invalid' "
                     [class.is-invalid]="universoControl?.touched && nameControl?.invalid"
                   >
-                  <div *ngIf="universoControl?.hasError('onlyNumbers')" class="invalid-feedback"> El valor debe ser un número entre 1 y 12. </div>
+                  <div *ngIf="universoControl?.hasError('onlyNumbers')" class="invalid-feedback fs-6 error-shadow d-flex ms-1"> El valor debe ser un número entre 1 y 12. </div>
                 </div>
               </div>
               <!-- Planeta -->
@@ -179,9 +179,9 @@
                     placeholder="Ingresa tu nivel de pelea"
                     [ngClass]="poderPeleaControl?.valid ? 'is-valid' : 'is-invalid' "
                     [class.is-invalid]="poderPeleaControl?.touched && nameControl?.invalid"
-                  >
-                  <div *ngIf="poderPeleaControl?.hasError('powerLevel')" class="invalid-feedback"> Tu poder de pelea debe ser un número mayor a 500. </div>
-                </div>
+                    >
+                    <div *ngIf="poderPeleaControl?.hasError('powerLevel')" class="invalid-feedback fs-6 error-shadow"> Tu poder de pelea debe ser un número mayor a 500. </div>
+                  </div>
               </div>   
             </div>       
             <!-- FOTO -->
@@ -192,7 +192,8 @@
             <div class="row mb-3">
               <div class="col-xl-8">
                 <div class="form-check">
-                  <label class="d-flex justify-content-start " for="gridCheck1">Soy consciente de que durante el torneo puedo perder la vida, no responsabilizaré a la organización ni a ninguno de sus miembros por este motivo.</label>              
+                  <label class="d-flex justify-content-center error-shadow" for="gridCheck1">IMPORTANTE</label>              
+                  <label class="d-flex justify-content-start error-shadow" for="gridCheck1">Soy consciente de que durante el torneo puedo perder la vida, no responsabilizaré a la organización ni a ninguno de sus miembros por este motivo.</label>              
                 </div>
               </div>
               <div class="col">
