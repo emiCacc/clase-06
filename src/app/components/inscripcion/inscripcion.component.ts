@@ -2,6 +2,7 @@ import { AfterViewChecked, Component, ElementRef, ViewChild } from '@angular/cor
 import { participantes, IParticipante } from '../../utils/db-participantes';
 import { FormBuilder, Validators } from '@angular/forms';
 import { noSymbolsValidator, onlyNumbersValidator, powerLevelValidator } from 'src/app/utils/validators';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-inscripcion',
@@ -24,11 +25,11 @@ export class InscripcionComponent implements AfterViewChecked {
   participanteSeleccionadoId: number | null = null;
 
   inscripcionForm = this.formBuilder.group({
-    participante: [null], 
     nombre: ['', [noSymbolsValidator]],
     universo: ['', [onlyNumbersValidator]],
     planeta: [''],
-    poderPelea: ['', [powerLevelValidator]]
+    poderPelea: ['', [powerLevelValidator]],
+    participante: [null]
   });
 
   get nameControl() {
@@ -124,4 +125,38 @@ export class InscripcionComponent implements AfterViewChecked {
     });
   }
   
+  onSubmit(): void {
+    if (this.inscripcionForm.valid) {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Realizado!',
+        text: 'Usuario registrado.'
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'No se pudo registrar',
+        text: 'Corrige los datos señalados.'
+      });
+      this.inscripcionForm.markAllAsTouched();
+    }
+  }
+
+  registerKwnowPlayer(): void{
+    if (this.inscripcionForm.get('participante')?.value){
+      Swal.fire({
+        icon: 'success',
+        title: '¡Realizado!',
+        text: 'Usuario registrado.'
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'No se pudo registrar',
+        text: 'Elije un participante de la lista.'
+      });
+      this.inscripcionForm.markAllAsTouched();
+    }
+  }
+
 }

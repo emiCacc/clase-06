@@ -1,15 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
-export const noHomeroValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-
-    if(typeof control.value === 'string' && control.value.toLowerCase().includes('homero')){
-        return {
-            noHomero: true
-        };
-    }
-     return null; 
-}
-
 export function noSymbolsValidator(control: AbstractControl): { [key: string]: boolean } | null {
     if (!control.value) {
       return null; 
@@ -42,21 +32,26 @@ export function noSymbolsValidator(control: AbstractControl): { [key: string]: b
     return null;
   };
 
+
   export const powerLevelValidator: ValidatorFn = (control: AbstractControl): { [key: string]: boolean } | null => {
-    if (!control.value) {
-      return null;
+    const value = control.value;
+  
+    if (!value) {
+      return { required: true };
     }
   
     const notNumbersRegex = /[^0-9]/;
-    const value = parseInt(control.value, 10);
+    const parsedValue = parseInt(value, 10);
   
-    if (notNumbersRegex.test(control.value)) {
+    if (notNumbersRegex.test(value)) {
       return { powerLevel: true };
     }
   
-    if (value < 500) {
+    if (parsedValue < 500) {
       return { powerLevel: true };
     }
   
     return null;
   };
+  
+

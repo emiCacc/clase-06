@@ -33,49 +33,136 @@
       <form [formGroup]="inscripcionForm">
         <!-- INPUTS SI -->
         <div *ngIf="option" class="row budokai_yes" name="DIV_1">
-          <h3>SI HE PARTICIPADO</h3>
-          <div class="col-xl-8">
-            <label class="mt-1 mb-2">Selecciona tu nombre en la lista para inscribirte sin cargar tus datos.</label>
-            <!-- Participante -->
-            <div class="row mb-3">
-              <label for="inputParticipante" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Participante:</label>
-              <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
-                <select 
-                  #inputParticipanteAntiguo
-                  class="w-75 h-75 d-flex text-center bg-warning-subtle" 
-                  id="floatingSelect" 
-                  formControlName="participante"
-                  name="participanteSeleccionadoId">
-                  <option [ngValue]="null">Elije tu nombre</option>
-                  <option *ngFor="let participante of participantes" [ngValue]="participante.id">{{ participante.name }}</option>
-                </select>       
+            <h3>SI HE PARTICIPADO</h3>
+            <div class="col-xl-8">
+              <label class="mt-1 mb-2">Selecciona tu nombre en la lista para inscribirte sin cargar tus datos.</label>
+              <!-- Participante -->
+              <div class="row mb-3">
+                <label for="inputParticipante" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Participante:</label>
+                <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
+                  <select 
+                    #inputParticipanteAntiguo
+                    class="w-75 h-75 d-flex text-center bg-warning-subtle" 
+                    id="floatingSelect" 
+                    formControlName="participante"
+                    name="participanteSeleccionadoId">
+                    <option [ngValue]="null">Elije tu nombre</option>
+                    <option *ngFor="let participante of participantes" [ngValue]="participante.id">{{ participante.name }}</option>
+                  </select>       
+                </div>
               </div>
-            </div>
-            <!-- Universo -->
-            <div class="row mb-3">
-              <label for="inputUniverso" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Universo:</label>
-              <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
-                <input #inputUniverso                  
-                  type="text" 
-                  class="form-control w-75 h-75 text-center bg-warning-subtle" 
-                  id="inputUniverso" 
-                  [value]="getUniversoById()" 
-                  [readonly]="true"
-                  placeholder="Elige un participante para ver"
-                >
+              <!-- Universo -->
+              <div class="row mb-3">
+                <label for="inputUniverso" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Universo:</label>
+                <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
+                  <input #inputUniverso                  
+                    type="text" 
+                    class="form-control w-75 h-75 text-center bg-warning-subtle" 
+                    id="inputUniverso" 
+                    [value]="getUniversoById()" 
+                    [readonly]="true"
+                    placeholder="Elige un participante para ver"
+                  >
+                </div>
               </div>
+                <!-- Planeta -->
+                <div class="row mb-3">
+                  <label for="inputPlaneta" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Planeta:</label>
+                  <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
+                    <input #inputPlaneta
+                      type="text" 
+                      class="form-control w-75 h-75 text-center bg-warning-subtle" 
+                      id="inputPlaneta" 
+                      [value]="getPlanetaById()" 
+                      [readonly]="true"
+                      placeholder="Elige un participante para ver"
+                    >
+                  </div>
+                </div>
+                <!-- Poder de pelea -->
+                <div class="row mb-3">
+                  <label for="inputPoderPelea" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Poder de pelea:</label>
+                  <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
+                    <input #inputPoderPelea
+                      type="text" 
+                      class="form-control w-75 h-75 text-center bg-warning-subtle" 
+                      id="inputPoderPelea" 
+                      [value]="getPoderById()" 
+                      [readonly]="true"
+                      placeholder="Elige un participante para ver"
+                    >
+                  </div>
+                </div>            
             </div>
+            <!-- FOTO -->
+            <div class="col-xl-4">
+                <img [src]="getFotoByParticipanteId()" alt="Foto del Participante" class="img-fluid img-participante">
+            </div>
+            <!-- BUTTONS -->
+            <div class="row">
+              <div class="col-xl-8 mt-4 mb-4">
+                <button type="submit" class="btn btn-primary" (click)="registerKwnowPlayer()">¡Inscribirme!</button>
+                <button type="submit" class="btn btn-danger ms-3" (click)="clear()">¡Mejor no!</button>
+              </div>
+              <div class="col-xl-4"></div>
+            </div>
+        </div>
+
+        <!-- INPUTS NO -->
+        <div *ngIf="!option" class="row budokai_no" name="DIV_2">
+            <h3>NO HE PARTICIPADO</h3>
+            <div class="col-xl-8">
+              <label class="mt-1 mb-2">Ingresa tus datos a continuación para inscribirte a la competición.</label>
+              <!-- Participante -->
+              <div class="row mb-3">
+                <label for="inputNombreNuevo" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Nombre:</label>
+                <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
+                  <input #inputNombreNuevo
+                    required
+                    formControlName="nombre"
+                    type="text"
+                    class="form-control w-75 h-75 text-center" 
+                    id="inputParticipante" 
+                    [value]="getUniversoById()"
+                    placeholder="Ingresa tu nombre"
+                    [ngClass]="nameControl?.valid ? 'is-valid' : 'is-invalid' "
+                    [class.is-invalid]="nameControl?.touched && nameControl?.invalid"
+                  >
+                  <div *ngIf="nameControl?.hasError('noSymbols')" class="invalid-feedback"> No se permiten simbolos </div>
+                </div>
+              </div>
+              <!-- Universo -->
+              <div class="row mb-3">
+                <label for="inputUniverso" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Universo:</label>
+                <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
+                  <input #inputUniverso
+                    required
+                    formControlName="universo"
+                    type="text" 
+                    class="form-control w-75 h-75 text-center" 
+                    id="inputUniverso" 
+                    [value]="getUniversoById()"
+                    placeholder="Ingresa tu universo"
+                    [ngClass]="universoControl?.valid ? 'is-valid' : 'is-invalid' "
+                    [class.is-invalid]="universoControl?.touched && nameControl?.invalid"
+                  >
+                  <div *ngIf="universoControl?.hasError('onlyNumbers')" class="invalid-feedback"> El valor debe ser un número entre 1 y 12. </div>
+                </div>
+              </div>
               <!-- Planeta -->
               <div class="row mb-3">
                 <label for="inputPlaneta" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Planeta:</label>
                 <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
                   <input #inputPlaneta
+                    required
+                    formControlName="planeta"                
                     type="text" 
-                    class="form-control w-75 h-75 text-center bg-warning-subtle" 
+                    class="form-control w-75 h-75 text-center" 
                     id="inputPlaneta" 
-                    [value]="getPlanetaById()" 
-                    [readonly]="true"
-                    placeholder="Elige un participante para ver"
+                    [value]="getPlanetaById()"
+                    placeholder="Ingresa tu Planeta"
+                    [ngClass]="planetaControl?.valid ? 'is-valid' : 'is-invalid' "
+                    [class.is-invalid]="planetaControl?.touched && nameControl?.invalid"
                   >
                 </div>
               </div>
@@ -84,119 +171,43 @@
                 <label for="inputPoderPelea" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Poder de pelea:</label>
                 <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
                   <input #inputPoderPelea
+                    formControlName="poderPelea"
                     type="text" 
-                    class="form-control w-75 h-75 text-center bg-warning-subtle" 
+                    class="form-control w-75 h-75 text-center" 
                     id="inputPoderPelea" 
-                    [value]="getPoderById()" 
-                    [readonly]="true"
-                    placeholder="Elige un participante para ver"
+                    [value]="getPoderById()"
+                    placeholder="Ingresa tu nivel de pelea"
+                    [ngClass]="poderPeleaControl?.valid ? 'is-valid' : 'is-invalid' "
+                    [class.is-invalid]="poderPeleaControl?.touched && nameControl?.invalid"
                   >
+                  <div *ngIf="poderPeleaControl?.hasError('powerLevel')" class="invalid-feedback"> Tu poder de pelea debe ser un número mayor a 500. </div>
                 </div>
-              </div>            
-          </div>
-          <!-- FOTO -->
-          <div class="col-xl-4">
-              <img [src]="getFotoByParticipanteId()" alt="Foto del Participante" class="img-fluid img-participante">
-          </div>
+              </div>   
+            </div>       
+            <!-- FOTO -->
+            <div class="col-xl-4">
+              <img alt="Foto" class="img-fluid img-participante" src="../../../assets/img/logo_budokai_empty.png">
+            </div>  
+            <!-- CHECKBOX -->
+            <div class="row mb-3">
+              <div class="col-xl-8">
+                <div class="form-check">
+                  <label class="d-flex justify-content-start" for="gridCheck1">Soy consciente de que durante el torneo puedo perder la vida, no responsabilizaré a la organización ni a ninguno de sus miembros por este motivo.</label>              
+                </div>
+              </div>
+              <div class="col">
+                <input type="checkbox" id="gridCheck1" class="d-xl-flex justify-content-center mt-2">
+              </div>
+            </div>
+            <!-- BUTTONS -->
+            <div class="row">
+              <div class="col-xl-8 mt-4 mb-4">
+                <button type="submit" class="btn btn-primary" (click)="onSubmit()">¡Inscribirme!</button>
+                <button type="submit" class="btn btn-danger ms-3" (click)="clear()">¡Mejor no!</button>
+              </div>
+              <div class="col-xl-4"></div>
+            </div>
         </div>
 
-        <!-- INPUTS NO -->
-        <div *ngIf="!option" class="row budokai_no" name="DIV_2">
-          <h3>NO HE PARTICIPADO</h3>
-          <div class="col-xl-8">
-            <label class="mt-1 mb-2">Ingresa tus datos a continuación para inscribirte a la competición.</label>
-            <!-- Participante -->
-            <div class="row mb-3">
-              <label for="inputNombreNuevo" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Nombre:</label>
-              <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
-                <input #inputNombreNuevo
-                  formControlName="nombre"
-                  type="text"
-                  class="form-control w-75 h-75 text-center" 
-                  id="inputParticipante" 
-                  [value]="getUniversoById()"
-                  placeholder="Ingresa tu nombre"
-                  [ngClass]="nameControl?.valid ? 'is-valid' : 'is-invalid' "
-                  [class.is-invalid]="nameControl?.touched && nameControl?.invalid"
-                >
-                <div *ngIf="nameControl?.hasError('noSymbols')" class="invalid-feedback"> No se permiten simbolos </div>
-              </div>
-            </div>
-            <!-- Universo -->
-            <div class="row mb-3">
-              <label for="inputUniverso" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Universo:</label>
-              <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
-                <input #inputUniverso
-                  formControlName="universo"
-                  type="text" 
-                  class="form-control w-75 h-75 text-center" 
-                  id="inputUniverso" 
-                  [value]="getUniversoById()"
-                  placeholder="Ingresa tu universo"
-                  [ngClass]="universoControl?.valid ? 'is-valid' : 'is-invalid' "
-                  [class.is-invalid]="universoControl?.touched && nameControl?.invalid"
-                >
-                <div *ngIf="universoControl?.hasError('onlyNumbers')" class="invalid-feedback"> El valor debe ser un número entre 1 y 12. </div>
-              </div>
-            </div>
-            <!-- Planeta -->
-            <div class="row mb-3">
-              <label for="inputPlaneta" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Planeta:</label>
-              <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
-                <input #inputPlaneta
-                  formControlName="planeta"                
-                  type="text" 
-                  class="form-control w-75 h-75 text-center" 
-                  id="inputPlaneta" 
-                  [value]="getPlanetaById()"
-                  placeholder="Ingresa tu Planeta"
-                  [ngClass]="planetaControl?.valid ? 'is-valid' : 'is-invalid' "
-                  [class.is-invalid]="planetaControl?.touched && nameControl?.invalid"
-                >
-              </div>
-            </div>
-            <!-- Poder de pelea -->
-            <div class="row mb-3">
-              <label for="inputPoderPelea" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Poder de pelea:</label>
-              <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
-                <input #inputPoderPelea
-                  formControlName="poderPelea"
-                  type="text" 
-                  class="form-control w-75 h-75 text-center" 
-                  id="inputPoderPelea" 
-                  [value]="getPoderById()"
-                  placeholder="Ingresa tu nivel de pelea"
-                  [ngClass]="poderPeleaControl?.valid ? 'is-valid' : 'is-invalid' "
-                  [class.is-invalid]="poderPeleaControl?.touched && nameControl?.invalid"
-                >
-                <div *ngIf="poderPeleaControl?.hasError('powerLevel')" class="invalid-feedback"> Tu poder de pelea debe ser un número mayor a 500. </div>
-              </div>
-            </div>   
-          </div>       
-          <!-- FOTO -->
-          <div class="col-xl-4">
-            <img alt="Foto" class="img-fluid img-participante" src="../../../assets/img/logo_budokai_empty.png">
-          </div>  
-          <!-- CHECKBOX -->
-          <div class="row mb-3">
-            <div class="col-xl-8">
-              <div class="form-check">
-                <label class="d-flex justify-content-start" for="gridCheck1">Soy consciente de que durante el torneo puedo perder la vida, no responsabilizaré a la organización ni a ninguno de sus miembros por este motivo.</label>              
-              </div>
-            </div>
-            <div class="col">
-              <input type="checkbox" id="gridCheck1" class="d-xl-flex justify-content-center mt-2">
-            </div>
-          </div>
-          </div>
-
-        <!-- BUTTONS -->
-        <div class="row">
-          <div class="col-xl-8 mt-4 mb-4">
-            <button type="submit" class="btn btn-primary">¡Inscribirme!</button>
-            <button type="submit" class="btn btn-danger ms-3" (click)="clear()">¡Mejor no!</button>
-          </div>
-          <div class="col-xl-4"></div>
-        </div>
       </form>
 </div>
