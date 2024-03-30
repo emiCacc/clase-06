@@ -35,21 +35,21 @@
             <div class="row mb-3">
               <label for="inputUniverso" class="col-sm-2 col-form-label">Universo</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputUniverso" [value]="getUniversoByParticipanteId(participanteSeleccionadoId)" [readonly]="true">
+                <input type="text" class="form-control" id="inputUniverso" [value]="getUniversoById(participanteSeleccionadoId)" [readonly]="true">
               </div>
             </div>
               <!-- Planeta -->
               <div class="row mb-3">
                 <label for="inputPlaneta" class="col-sm-2 col-form-label">Planeta</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputPlaneta">
+                  <input type="text" class="form-control" id="inputPlaneta" [value]="getPlanetaById(participanteSeleccionadoId)" [readonly]="true">
                 </div>
               </div>
               <!-- Poder de pelea -->
               <div class="row mb-3">
                 <label for="inputPoderPelea" class="col-sm-2 col-form-label">Poder de pelea</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputPoderPelea">
+                  <input type="text" class="form-control" id="inputPoderPelea" [value]="getPoderById(participanteSeleccionadoId)" [readonly]="true">
                 </div>
               </div>            
           </div>

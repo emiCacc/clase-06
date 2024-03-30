@@ -12,14 +12,33 @@ export class InscripcionComponent {
   participantes = participantes;
   participanteSeleccionadoId: number | null = null;
 
-  getUniversoByParticipanteId(id: number | null): string {
+  getUniversoById(id: number | null): string {
     if (id === null) {
       return '';
     }
     const participante = this.participantes.find((p: IParticipante) => p.id === id);
-    const value = participante ? participante.universo.toString() : '';
-    return value;
+    const universo = participante ? participante.universo.toString() : '';
+    return universo;
   }
+
+  getPlanetaById(id: number | null): string {
+    if (id === null) {
+      return '';
+    }
+    const participante = this.participantes.find((p: IParticipante) => p.id === id);
+    const planeta = participante ? participante.planeta.toString() : '';
+    return planeta;
+  }
+
+  getPoderById(id: number | null): string {
+    if (id === null) {
+      return '';
+    }
+    const participante = this.participantes.find((p: IParticipante) => p.id === id);
+    const poder = participante ? participante.poderPelea.toString() : '';
+    return poder;
+  }
+
 
   getFotoByParticipanteId(id: number | null): string{
     if (id === null) {
