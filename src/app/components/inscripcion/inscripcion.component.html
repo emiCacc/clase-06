@@ -1,6 +1,6 @@
-<div class="row col-12 mt-2">
+<div class="row col-12 mt-2 text-white">
     <!-- RADIOBUTTONS -->
-    <fieldset class="row col-12 mb-3">
+    <fieldset class="row col-12 mb-3 text-shadow">
       <legend class="col-6 col-form-label pt-0 text-end">¿Ha participado antes en algún torneo de Artes Marciales?:</legend>
       <div class="col-6 d-flex justify-content-start">
         <!-- Check 1 -->
@@ -32,7 +32,7 @@
     <!-- FORM -->
       <form [formGroup]="inscripcionForm">
         <!-- INPUTS SI -->
-        <div *ngIf="option" class="row budokai_yes" name="DIV_1">
+        <div *ngIf="option" class="row budokai_yes text-shadow" name="DIV_1">
             <h3>SI HE PARTICIPADO</h3>
             <div class="col-xl-8">
               <label class="mt-1 mb-2">Selecciona tu nombre en la lista para inscribirte sin cargar tus datos.</label>
@@ -109,13 +109,13 @@
         </div>
 
         <!-- INPUTS NO -->
-        <div *ngIf="!option" class="row budokai_no" name="DIV_2">
-            <h3>NO HE PARTICIPADO</h3>
+        <div *ngIf="!option" class="row budokai_no text-shadow" name="DIV_2">
+            <h3 class="text-shadow">NO HE PARTICIPADO</h3>
             <div class="col-xl-8">
-              <label class="mt-1 mb-2">Ingresa tus datos a continuación para inscribirte a la competición.</label>
+              <label class="mt-1 mb-2 text-shadow">Ingresa tus datos a continuación para inscribirte a la competición.</label>
               <!-- Participante -->
               <div class="row mb-3">
-                <label for="inputNombreNuevo" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Nombre:</label>
+                <label for="inputNombreNuevo" class="col-xl-3 col-sm-2 col-form-label text-xl-end text-shadow">Nombre:</label>
                 <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
                   <input #inputNombreNuevo
                     required
@@ -133,7 +133,7 @@
               </div>
               <!-- Universo -->
               <div class="row mb-3">
-                <label for="inputUniverso" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Universo:</label>
+                <label for="inputUniverso" class="col-xl-3 col-sm-2 col-form-label text-xl-end text-shadow">Universo:</label>
                 <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
                   <input #inputUniverso
                     required
@@ -151,7 +151,7 @@
               </div>
               <!-- Planeta -->
               <div class="row mb-3">
-                <label for="inputPlaneta" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Planeta:</label>
+                <label for="inputPlaneta" class="col-xl-3 col-sm-2 col-form-label text-xl-end text-shadow">Planeta:</label>
                 <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
                   <input #inputPlaneta
                     required
@@ -168,7 +168,7 @@
               </div>
               <!-- Poder de pelea -->
               <div class="row mb-3">
-                <label for="inputPoderPelea" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Poder de pelea:</label>
+                <label for="inputPoderPelea" class="col-xl-3 col-sm-2 col-form-label text-xl-end text-shadow">Poder de pelea:</label>
                 <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
                   <input #inputPoderPelea
                     formControlName="poderPelea"
@@ -192,7 +192,7 @@
             <div class="row mb-3">
               <div class="col-xl-8">
                 <div class="form-check">
-                  <label class="d-flex justify-content-start" for="gridCheck1">Soy consciente de que durante el torneo puedo perder la vida, no responsabilizaré a la organización ni a ninguno de sus miembros por este motivo.</label>              
+                  <label class="d-flex justify-content-start " for="gridCheck1">Soy consciente de que durante el torneo puedo perder la vida, no responsabilizaré a la organización ni a ninguno de sus miembros por este motivo.</label>              
                 </div>
               </div>
               <div class="col">
