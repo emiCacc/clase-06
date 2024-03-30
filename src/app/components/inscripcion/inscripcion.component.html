@@ -180,13 +180,13 @@
                     [ngClass]="poderPeleaControl?.valid ? 'is-valid' : 'is-invalid' "
                     [class.is-invalid]="poderPeleaControl?.touched && nameControl?.invalid"
                     >
-                    <div *ngIf="poderPeleaControl?.hasError('powerLevel')" class="invalid-feedback fs-6 error-shadow"> Tu poder de pelea debe ser un número mayor a 500. </div>
+                    <div *ngIf="poderPeleaControl?.hasError('powerLevel')" class="invalid-feedback fs-6 error-shadow"> Debe ser un número mayor a 500. </div>
                   </div>
               </div>   
             </div>       
             <!-- FOTO -->
             <div class="col-xl-4">
-              <img alt="Foto" class="img-fluid img-participante" src="../../../assets/img/logo_budokai_empty.png">
+              <img alt="Foto" class="img-fluid img-nuevo-participante" src="../../../assets/img/logo_budokai_empty.png">
             </div>  
             <!-- CHECKBOX -->
             <div class="row mb-3">
