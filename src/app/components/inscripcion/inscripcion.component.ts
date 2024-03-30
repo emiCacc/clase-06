@@ -18,11 +18,7 @@ export class InscripcionComponent implements AfterViewChecked {
   participanteSeleccionadoId: number | null = null;
 
   ngAfterViewChecked(): void {
-    console.log("ngAfterViewInit called");
-    console.log("inputUniverso:", this.inputUniverso);
-    console.log("inputPlaneta:", this.inputPlaneta);
-    console.log("inputPoderPelea:", this.inputPoderPelea);
-      this.clear();
+    this.clear();
   }
 
   getUniversoById(id: number | null): string {
@@ -62,7 +58,6 @@ export class InscripcionComponent implements AfterViewChecked {
   }
 
   clear() {
-    console.log("Clear llamado");
     this.inputNombreNuevo.nativeElement.value = '';
     this.inputUniverso.nativeElement.value = '';
     this.inputPlaneta.nativeElement.value = '';
