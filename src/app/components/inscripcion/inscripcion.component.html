@@ -5,12 +5,26 @@
       <div class="col-6 d-flex justify-content-start">
         <!-- Check 1 -->
         <div class="form-check-inline">
-          <input class="form-check-input" type="radio" name="option" id="option1" [(ngModel)]="option" [value]="true">
+          <input 
+            class="form-check-input" 
+            type="radio" 
+            name="option" 
+            id="option1" 
+            [(ngModel)]="option" 
+            [value]="true" 
+            (ngModelChange)="clear()">
           <label class="ms-1" for="option1">Si</label>
         </div>
         <!-- Check 2 -->
         <div class="form-check-inline">
-          <input class="form-check-input" type="radio" name="option" id="option2" [(ngModel)]="option" [value]="false">
+          <input 
+            class="form-check-input" 
+            type="radio" 
+            name="option" 
+            id="option2" 
+            [(ngModel)]="option" 
+            [value]="false" 
+            (ngModelChange)="clear()">
           <label class="ms-1" for="option2">No</label>
         </div>
       </div>
@@ -19,7 +33,7 @@
       <form>
         <div *ngIf="option" class="row budokai_yes" name="DIV_1">
           <!-- INPUTS -->
-          <div class="col-8" >
+          <div class="col-8">
             <h3>SI HE PARTICIPADO</h3>
             <!-- Participante -->
             <div class="row mb-3">
@@ -35,46 +49,123 @@
             <div class="row mb-3">
               <label for="inputUniverso" class="col-sm-2 col-form-label">Universo</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputUniverso" [value]="getUniversoById(participanteSeleccionadoId)" [readonly]="true">
+                <input #inputUniverso
+                  type="text" 
+                  class="form-control" 
+                  id="inputUniverso" 
+                  [value]="getUniversoById(participanteSeleccionadoId)" 
+                  [readonly]="true"
+                >
               </div>
             </div>
               <!-- Planeta -->
               <div class="row mb-3">
                 <label for="inputPlaneta" class="col-sm-2 col-form-label">Planeta</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputPlaneta" [value]="getPlanetaById(participanteSeleccionadoId)" [readonly]="true">
+                  <input #inputPlaneta
+                    type="text" 
+                    class="form-control" 
+                    id="inputPlaneta" 
+                    [value]="getPlanetaById(participanteSeleccionadoId)" 
+                    [readonly]="true"
+                  >
                 </div>
               </div>
               <!-- Poder de pelea -->
               <div class="row mb-3">
                 <label for="inputPoderPelea" class="col-sm-2 col-form-label">Poder de pelea</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputPoderPelea" [value]="getPoderById(participanteSeleccionadoId)" [readonly]="true">
+                  <input #inputPoderPelea
+                    type="text" 
+                    class="form-control" 
+                    id="inputPoderPelea" 
+                    [value]="getPoderById(participanteSeleccionadoId)" 
+                    [readonly]="true"
+                  >
                 </div>
               </div>            
           </div>
-            <!-- FOTO -->
+          <!-- FOTO -->
           <div class="col">
               <img [src]="getFotoByParticipanteId(participanteSeleccionadoId)" alt="Foto del Participante" class="img-fluid img-participante">
           </div>
         </div>
 
-
-
-        <div *ngIf="!option" class="budokai_no" name="DIV_2">
-          <h3>NO HE PARTICIPADO</h3>
+        <div *ngIf="!option" class="row budokai_no" name="DIV_2">
+          <!-- INPUTS -->
+          <div class="col-xl-8">
+            <h3>NO HE PARTICIPADO</h3>
+            <!-- Participante -->
+            <div class="row mb-3">
+              <label for="inputNombreNuevo" class="col-sm-2 col-form-label">Nombre</label>
+              <div class="col-sm-10">
+                <input #inputNombreNuevo
+                  type="text"
+                  class="form-control" 
+                  id="inputParticipante" 
+                  [value]="getUniversoById(participanteSeleccionadoId)"
+                >
+              </div>
+            </div>
+            <!-- Universo -->
+            <div class="row mb-3">
+              <label for="inputUniverso" class="col-sm-2 col-form-label">Universo</label>
+              <div class="col-sm-10">
+                <input #inputUniverso
+                  type="text" 
+                  class="form-control" 
+                  id="inputUniverso" 
+                  [value]="getUniversoById(participanteSeleccionadoId)"
+                >
+              </div>
+            </div>
+            <!-- Planeta -->
+            <div class="row mb-3">
+              <label for="inputPlaneta" class="col-sm-2 col-form-label">Planeta</label>
+              <div class="col-sm-10">
+                <input #inputPlaneta
+                  type="text" 
+                  class="form-control" 
+                  id="inputPlaneta" 
+                  [value]="getPlanetaById(participanteSeleccionadoId)"
+                >
+              </div>
+            </div>
+            <!-- Poder de pelea -->
+            <div class="row mb-3">
+              <label for="inputPoderPelea" class="col-sm-2 col-form-label">Poder de pelea</label>
+              <div class="col-sm-10">
+                <input #inputPoderPelea
+                  type="text" 
+                  class="form-control" 
+                  id="inputPoderPelea" 
+                  [value]="getPoderById(participanteSeleccionadoId)"
+                >
+              </div>
+            </div>   
+          </div>       
+          <!-- FOTO -->
+          <div class="col-xl-4">
+            <img alt="Foto" class="img-fluid img-participante" src="../../../assets/img/logo_budokai_empty.png">
+          </div>                    
         </div>
         <!-- CHECKBOX -->
         <div class="row mb-3">
-          <div class="col-sm-10 offset-sm-2">
+          <div class="col-xl-8 offset-sm-2">
             <div class="form-check">
               <label class="d-flex justify-content-start" for="gridCheck1">Example checkbox</label>
-              <input type="checkbox" id="gridCheck1">
+              
             </div>
           </div>
+          <div class="col-xl-4"><input type="checkbox" id="gridCheck1"></div>
         </div>
         <!-- BUTTONS -->
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <div class="row">
+          <div class="col-xl-8">
+            <button type="submit" class="btn btn-primary">¡Inscribirme!</button>
+            <button type="submit" class="btn btn-danger ms-3" (click)="clear()">¡Mejor no!</button>
+          </div>
+          <div class="col-xl-4"></div>
+        </div>
       </form>
-
 </div>

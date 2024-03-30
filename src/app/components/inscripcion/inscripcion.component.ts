@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { participantes, IParticipante } from '../../utils/db-participantes';
 
 @Component({
@@ -7,10 +7,23 @@ import { participantes, IParticipante } from '../../utils/db-participantes';
   styleUrls: ['./inscripcion.component.scss']
 })
 
-export class InscripcionComponent {
+export class InscripcionComponent implements AfterViewChecked {
+  @ViewChild('inputNombreNuevo') inputNombreNuevo!: ElementRef;
+  @ViewChild('inputUniverso') inputUniverso!: ElementRef;
+  @ViewChild('inputPlaneta') inputPlaneta!: ElementRef;
+  @ViewChild('inputPoderPelea') inputPoderPelea!: ElementRef;
+  
   option: boolean = false;
   participantes = participantes;
   participanteSeleccionadoId: number | null = null;
+
+  ngAfterViewChecked(): void {
+    console.log("ngAfterViewInit called");
+    console.log("inputUniverso:", this.inputUniverso);
+    console.log("inputPlaneta:", this.inputPlaneta);
+    console.log("inputPoderPelea:", this.inputPoderPelea);
+      this.clear();
+  }
 
   getUniversoById(id: number | null): string {
     if (id === null) {
@@ -39,7 +52,6 @@ export class InscripcionComponent {
     return poder;
   }
 
-
   getFotoByParticipanteId(id: number | null): string{
     if (id === null) {
       return '../../assets/img/logo_budokai_empty.svg';
@@ -47,6 +59,14 @@ export class InscripcionComponent {
     const participante = this.participantes.find((p: IParticipante) => p.id === id);
     const value = participante ? participante.imgUrl.toString() : '';
     return value;
+  }
+
+  clear() {
+    console.log("Clear llamado");
+    this.inputNombreNuevo.nativeElement.value = '';
+    this.inputUniverso.nativeElement.value = '';
+    this.inputPlaneta.nativeElement.value = '';
+    this.inputPoderPelea.nativeElement.value = '';
   }
   
 }
