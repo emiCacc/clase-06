@@ -12,7 +12,7 @@
             id="option1" 
             [(ngModel)]="option" 
             [value]="true" 
-            (ngModelChange)="clear()">
+            (change)="onOptionChange()">
           <label class="ms-1" for="option1">Si</label>
         </div>
         <!-- Check 2 -->
@@ -24,13 +24,13 @@
             id="option2" 
             [(ngModel)]="option" 
             [value]="false" 
-            (ngModelChange)="clear()">
+            (change)="onOptionChange()">
           <label class="ms-1" for="option2">No</label>
         </div>
       </div>
     </fieldset>
     <!-- FORM -->
-      <form>
+      <form [formGroup]="inscripcionForm">
         <!-- INPUTS SI -->
         <div *ngIf="option" class="row budokai_yes" name="DIV_1">
           <div class="col-xl-8">
@@ -40,9 +40,10 @@
               <label for="inputParticipante" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Participante:</label>
               <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
                 <select 
+                  #inputParticipanteAntiguo
                   class="w-75 h-75 d-flex text-center bg-warning-subtle" 
                   id="floatingSelect" 
-                  [(ngModel)]="participanteSeleccionadoId" 
+                  formControlName="participante"
                   name="participanteSeleccionadoId">
                   <option [ngValue]="null">Elije tu nombre</option>
                   <option *ngFor="let participante of participantes" [ngValue]="participante.id">{{ participante.name }}</option>
@@ -53,12 +54,13 @@
             <div class="row mb-3">
               <label for="inputUniverso" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Universo:</label>
               <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
-                <input #inputUniverso
+                <input #inputUniverso                  
                   type="text" 
                   class="form-control w-75 h-75 text-center bg-warning-subtle" 
                   id="inputUniverso" 
-                  [value]="getUniversoById(participanteSeleccionadoId)" 
+                  [value]="getUniversoById()" 
                   [readonly]="true"
+                  placeholder="Elige un participante para ver"
                 >
               </div>
             </div>
@@ -70,8 +72,9 @@
                     type="text" 
                     class="form-control w-75 h-75 text-center bg-warning-subtle" 
                     id="inputPlaneta" 
-                    [value]="getPlanetaById(participanteSeleccionadoId)" 
+                    [value]="getPlanetaById()" 
                     [readonly]="true"
+                    placeholder="Elige un participante para ver"
                   >
                 </div>
               </div>
@@ -83,15 +86,16 @@
                     type="text" 
                     class="form-control w-75 h-75 text-center bg-warning-subtle" 
                     id="inputPoderPelea" 
-                    [value]="getPoderById(participanteSeleccionadoId)" 
+                    [value]="getPoderById()" 
                     [readonly]="true"
+                    placeholder="Elige un participante para ver"
                   >
                 </div>
               </div>            
           </div>
           <!-- FOTO -->
           <div class="col-xl-4">
-              <img [src]="getFotoByParticipanteId(participanteSeleccionadoId)" alt="Foto del Participante" class="img-fluid img-participante">
+              <img [src]="getFotoByParticipanteId()" alt="Foto del Participante" class="img-fluid img-participante">
           </div>
         </div>
 
@@ -104,10 +108,11 @@
               <label for="inputNombreNuevo" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Nombre:</label>
               <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
                 <input #inputNombreNuevo
+                  formControlName="nombre"
                   type="text"
                   class="form-control w-75 h-75 text-center" 
                   id="inputParticipante" 
-                  [value]="getUniversoById(participanteSeleccionadoId)"
+                  [value]="getUniversoById()"
                   placeholder="Ingresa tu nombre"
                 >
               </div>
@@ -117,10 +122,11 @@
               <label for="inputUniverso" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Universo:</label>
               <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
                 <input #inputUniverso
+                  formControlName="universo"
                   type="text" 
                   class="form-control w-75 h-75 text-center" 
                   id="inputUniverso" 
-                  [value]="getUniversoById(participanteSeleccionadoId)"
+                  [value]="getUniversoById()"
                   placeholder="Ingresa tu universo"
                 >
               </div>
@@ -130,10 +136,11 @@
               <label for="inputPlaneta" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Planeta:</label>
               <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
                 <input #inputPlaneta
+                  formControlName="planeta"                
                   type="text" 
                   class="form-control w-75 h-75 text-center" 
                   id="inputPlaneta" 
-                  [value]="getPlanetaById(participanteSeleccionadoId)"
+                  [value]="getPlanetaById()"
                   placeholder="Ingresa tu Planeta"
                 >
               </div>
@@ -143,10 +150,11 @@
               <label for="inputPoderPelea" class="col-xl-3 col-sm-2 col-form-label text-xl-end">Poder de pelea:</label>
               <div class="col-xl-9 col-sm-10 d-flex justify-content-center justify-content-sm-start">
                 <input #inputPoderPelea
+                  formControlName="poderPelea"
                   type="text" 
                   class="form-control w-75 h-75 text-center" 
                   id="inputPoderPelea" 
-                  [value]="getPoderById(participanteSeleccionadoId)"
+                  [value]="getPoderById()"
                   placeholder="Ingresa tu nivel de pelea"
                 >
               </div>
