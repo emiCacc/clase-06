@@ -3,3 +3,12 @@
     height: 300px; 
     //object-fit: cover; 
   }
+
+  input[type="radio"].form-check-input:checked {
+    background-color: orange;
+    border-color: orange;
+  }
+
+  input[type="radio"]:hover{
+    scale: 1.5;
+  }
