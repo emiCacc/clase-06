@@ -13,7 +13,7 @@ export const participantes: IParticipante[] = [
         name: 'Son Goku',
         imgUrl: '../../assets/img/participantes/Son_Goku.png',
         universo: 7,
-        planeta: 'Tierra',
+        planeta: 'Vegeta',
         poderPelea: '4.944.000 B max',
     },
     {
@@ -109,7 +109,7 @@ export const participantes: IParticipante[] = [
         name: 'Cell',
         imgUrl: '../../assets/img/participantes/Cell.png',
         universo: 7,
-        planeta: 'Laboratorio de Gero, Tierra',
+        planeta: 'Tierra (Laboratorio de Gero)',
         poderPelea: '3 B max',
     },    
     {
@@ -133,7 +133,7 @@ export const participantes: IParticipante[] = [
         name: 'Androide N18',
         imgUrl: '../../assets/img/participantes/Androide_18.png',
         universo: 7,
-        planeta: 'Tierra',
+        planeta: 'Tierra (Laboratorio de Gero)',
         poderPelea: '245 M max',
     },
     {
